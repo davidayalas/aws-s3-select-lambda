@@ -1,0 +1,79 @@
+service: ${self:custom.serviceName}
+
+plugins:
+  - serverless-s3-sync
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'test'}
+  region: eu-west-1
+  memorySize: 128
+  stackTags:
+    name: ${self:service}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 's3:*'
+      Resource: "*"
+
+resources:
+  Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
+
+    S3Data:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.bucketName}
+
+functions:
+  getDataCSV:
+    handler: lib/index.handler
+    environment:
+      BUCKET: ${self:custom.bucketName}
+      QUERY: ${file(${self:custom.setupFile}):SQL1}
+      FILE: ${file(${self:custom.setupFile}):sampleFile1}
+    events:
+      - http:
+          path: /getDataCSV
+          method: get
+          cors: true
+
+  getDataJSON:
+    handler: lib/index.handler
+    environment:
+      BUCKET: ${self:custom.bucketName}
+      QUERY: ${file(${self:custom.setupFile}):SQL2}
+      FILE: ${file(${self:custom.setupFile}):sampleFile2}
+      TYPE: ${file(${self:custom.setupFile}):type2}
+    events:
+      - http:
+          path: /getDataJSON
+          method: get
+          cors: true
+
+          
+environment:
+  stage: test
+
+custom:
+  setupFile: ./setup-demo.${self:provider.stage}.json
+  serviceName: ${file(${self:custom.setupFile}):serviceName}
+  accountId: ${env:ACCOUNT_ID}
+  bucketName: ${file(${self:custom.setupFile}):bucketName}  
+  s3Sync:
+    - bucketName: ${self:custom.bucketName} 
+      localDir: data
+
+package:
+  exclude:
+    - node_modules/**
+    - data/**
