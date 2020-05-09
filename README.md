@@ -46,3 +46,15 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
             * **CSV_QUOTE_CHARACTER**: A single character used for escaping when the field delimiter is part of the value            
         * If "JSON", other vars:
             * **JSON_TYPE**: default "DOCUMENT". Other values: "LINES"
+
+# Sample data
+
+* Sample data is from https://simplemaps.com/data/world-cities
+* With the script [conversor.js](data/conversor.js) I converted the same CSV into JSON
+
+        $ node conversor.js json > worldcities.json
+        
+# TODO
+
+* Allow query in post body
+* Add parquet format

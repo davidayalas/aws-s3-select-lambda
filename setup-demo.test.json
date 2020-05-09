@@ -5,7 +5,8 @@
     "SQL1" : "SELECT * FROM S3Object WHERE country='{country}'",
     "sampleFile1" : "worldcities.csv",
 
-    "SQL2" : "select * from s3object[*][*] s where s.country='{country}'",
-    "sampleFile2" : "cities.json",
-    "type2" : "JSON"
+    "SQL2" : "select * from s3object s where s.country='{country}'",
+    "sampleFile2" : "worldcities.json",
+    "type2" : "JSON",
+    "json_type2" : "LINES"
 } 

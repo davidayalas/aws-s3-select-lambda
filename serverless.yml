@@ -54,6 +54,7 @@ functions:
       QUERY: ${file(${self:custom.setupFile}):SQL2}
       FILE: ${file(${self:custom.setupFile}):sampleFile2}
       TYPE: ${file(${self:custom.setupFile}):type2}
+      JSON_TYPE: ${file(${self:custom.setupFile}):json_type2}
     events:
       - http:
           path: /getDataJSON
