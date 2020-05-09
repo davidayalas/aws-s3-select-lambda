@@ -36,7 +36,13 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 * **BUCKET**
 * **FILE**
 * **QUERY**: in the query you have to interpolate the query params you want to use to select objects, as '{param}' (note the single quotes)
-* **COMPRESSION_TYPE**: Default "NONE". Other values: GZIP or BZIP2
-* **TYPE**: default "CSV". Other values: JSON
-    * If CSV, other vars:
-        * FILE_HEADER: default "USE". Other values: NONE, IGNORE
+* Values to setup the INPUT SERIALIZATION:
+    * **COMPRESSION_TYPE**: Default "NONE". Other values: "GZIP", "BZIP2"
+    * **TYPE**: default "CSV". Other values: "JSON":
+        * If "CSV", other vars:
+            * **CSV_FILE_HEADER**: default "USE". Other values: "NONE", "IGNORE"
+            * **CSV_FIELD_DELIMITER**: A single character used to separate individual fields in a record. You can specify an arbitrary delimiter.
+            * **CSV_COMMENTS**: A single character used to indicate that a row should be ignored when the character is present at the start of that row
+            * **CSV_QUOTE_CHARACTER**: A single character used for escaping when the field delimiter is part of the value            
+        * If "JSON", other vars:
+            * **JSON_TYPE**: default "DOCUMENT". Other values: "LINES"
