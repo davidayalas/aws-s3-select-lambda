@@ -1,5 +1,10 @@
 # AWS S3 Select with AWS Lambda
 
+# Context
+
+* To find the simplest way to publish dynamic microservices
+* In our production uses, we use an API Gateway Custom Authorizer that includes in the request the user querying, then one filter in the SQL is the user id.
+
 * AWS S3 Select info: https://docs.aws.amazon.com/AmazonS3/latest/dev/selecting-content-from-objects.html
 
 # Requirements to deploy this demo
@@ -36,15 +41,15 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 * **METHOD**: default "GET". Other values: POST.
 * **BUCKET**
 * **FILE**
-* **QUERY**: in the query you have to interpolate the query params you want to use to select objects, as '{param}' (note the single quotes)
+* **QUERY**: in the query you have to interpolate the query params you want to use to select objects, as '{param}' (note the single quotes) <br /><br />
 * Values to setup the INPUT SERIALIZATION:
     * **COMPRESSION_TYPE**: Default "NONE". Other values: "GZIP", "BZIP2"
-    * **TYPE**: default "CSV". Other values: "JSON", "Parquet":
+    * **TYPE**: default "CSV". Other values: "JSON", "Parquet": <br /><br />
         * If "CSV", other vars:
             * **CSV_FILE_HEADER**: default "USE". Other values: "NONE", "IGNORE"
             * **CSV_FIELD_DELIMITER**: A single character used to separate individual fields in a record. You can specify an arbitrary delimiter.
             * **CSV_COMMENTS**: A single character used to indicate that a row should be ignored when the character is present at the start of that row
-            * **CSV_QUOTE_CHARACTER**: A single character used for escaping when the field delimiter is part of the value            
+            * **CSV_QUOTE_CHARACTER**: A single character used for escaping when the field delimiter is part of the value <br /><br />
         * If "JSON", other vars:
             * **JSON_TYPE**: default "LINES". Other values: "DOCUMENT"
 
