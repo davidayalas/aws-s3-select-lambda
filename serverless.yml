@@ -80,10 +80,11 @@ custom:
   setupFile: ./setup-demo.${self:provider.stage}.json
   serviceName: ${file(${self:custom.setupFile}):serviceName}
   accountId: ${env:ACCOUNT_ID}
-  bucketName: ${file(${self:custom.setupFile}):bucketName}  
+  bucketName: ${file(${self:custom.setupFile}):bucketName}-${sls:instanceId}  
   s3Sync:
     - bucketName: ${self:custom.bucketName} 
-      localDir: data
+      localDir: data/files
+      deleteRemoved: true
 
 package:
   exclude:
