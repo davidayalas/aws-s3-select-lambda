@@ -51,7 +51,7 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 # Sample data
 
 * Sample data is from https://simplemaps.com/data/world-cities
-* I transform same data into **JSON** and **Parquet** with two simple scripts:
+* I transform CSV data into **JSON** and **Parquet** with two simple scripts:
 
         $ node conversor-json.js | python3 conversor-parquet.py
         
