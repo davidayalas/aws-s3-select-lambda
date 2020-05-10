@@ -19,6 +19,8 @@
 
         $ export ACCOUNT_ID=xxxxxxxxxxx
 
+* Update "customString" with your own in [serverless.yml](https://github.com/davidayalas/aws-s3-select-lambda/blob/master/serverless.yml#L80)
+
 * Deploy demo
 
         $ sls deploy
