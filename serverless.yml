@@ -54,13 +54,24 @@ functions:
       QUERY: ${file(${self:custom.setupFile}):SQL2}
       FILE: ${file(${self:custom.setupFile}):sampleFile2}
       TYPE: ${file(${self:custom.setupFile}):type2}
-      JSON_TYPE: ${file(${self:custom.setupFile}):json_type2}
     events:
       - http:
           path: /getDataJSON
           method: get
           cors: true
 
+  getDataParquet:
+    handler: lib/index.handler
+    environment:
+      BUCKET: ${self:custom.bucketName}
+      QUERY: ${file(${self:custom.setupFile}):SQL3}
+      FILE: ${file(${self:custom.setupFile}):sampleFile3}
+      TYPE: ${file(${self:custom.setupFile}):type3}
+    events:
+      - http:
+          path: /getDataParquet
+          method: get
+          cors: true
           
 environment:
   stage: test
