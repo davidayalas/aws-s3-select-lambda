@@ -1,4 +1,4 @@
-service: ${self:custom.serviceName}
+service: ${self:custom.serviceName}-${self:custom.customString}
 
 plugins:
   - serverless-s3-sync
@@ -10,7 +10,7 @@ provider:
   region: eu-west-1
   memorySize: 128
   stackTags:
-    name: ${self:service}
+    name: ${self:service}-${sls:instanceId} 
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
@@ -77,10 +77,11 @@ environment:
   stage: test
 
 custom:
+  customString: "1234qwerty"
   setupFile: ./setup-demo.${self:provider.stage}.json
   serviceName: ${file(${self:custom.setupFile}):serviceName}
   accountId: ${env:ACCOUNT_ID}
-  bucketName: ${file(${self:custom.setupFile}):bucketName}-${sls:instanceId}  
+  bucketName: ${file(${self:custom.setupFile}):bucketName}-${self:custom.customString}
   s3Sync:
     - bucketName: ${self:custom.bucketName} 
       localDir: data/files
