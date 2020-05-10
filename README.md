@@ -54,6 +54,9 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 * I transform CSV data into **JSON** and **Parquet** with two simple scripts:
 
         $ node conversor-json.js | python3 conversor-parquet.py
+
+
+* View [data](data) directory for more info
         
 # TODO
 
