@@ -1,6 +1,6 @@
 {
-    "serviceName" : "s3-select-demo",
-    "bucketName" : "s3-select-demo-data",
+    "serviceName" : "s3-select-lambda",
+    "bucketName" : "data",
 
     "SQL1" : "select * from s3object s where s.country='{country}'",
     "sampleFile1" : "worldcities.csv",
@@ -11,6 +11,10 @@
 
     "SQL3" : "select * from s3object s where s.country='{country}'",
     "sampleFile3" : "worldcities.parquet",
-    "type3" : "Parquet"
+    "type3" : "Parquet",
+
+    "SQL4" : "select distinct s.country from s3object s",
+    "sampleFile4" : "worldcities.parquet",
+    "type4" : "Parquet"
 
 } 

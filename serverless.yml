@@ -1,4 +1,4 @@
-service: ${self:custom.serviceName}-${self:custom.customString}
+service: ${self:custom.serviceName}
 
 plugins:
   - serverless-s3-sync
@@ -6,7 +6,7 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: ${opt:stage, 'test'}
+  stage: ${opt:stage, 'demo'}
   region: eu-west-1
   memorySize: 128
   stackTags:
@@ -72,16 +72,28 @@ functions:
           path: /getDataParquet
           method: get
           cors: true
-          
+
+  postQuery:
+    handler: lib/index.handler
+    environment:
+      BUCKET: ${self:custom.bucketName}
+      FILE: ${file(${self:custom.setupFile}):sampleFile4}
+      TYPE: ${file(${self:custom.setupFile}):type4}
+      METHOD: POST
+    events:
+      - http:
+          path: /postQuery
+          method: post
+          cors: true
+
 environment:
-  stage: test
+  stage: demo
 
 custom:
-  customString: "1234qwerty"
-  setupFile: ./setup-demo.${self:provider.stage}.json
+  setupFile: ./setup.${self:provider.stage}.json
   serviceName: ${file(${self:custom.setupFile}):serviceName}
   accountId: ${env:ACCOUNT_ID}
-  bucketName: ${file(${self:custom.setupFile}):bucketName}-${self:custom.customString}
+  bucketName: ${self:custom.serviceName}-${file(${self:custom.setupFile}):bucketName}
   s3Sync:
     - bucketName: ${self:custom.bucketName} 
       localDir: data/files

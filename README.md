@@ -19,7 +19,7 @@
 
         $ export ACCOUNT_ID=xxxxxxxxxxx
 
-* Update "customString" with your own in [serverless.yml](https://github.com/davidayalas/aws-s3-select-lambda/blob/master/serverless.yml#L80)
+* Update "serviceName" with your own in [setup.demo.json](https://github.com/davidayalas/aws-s3-select-lambda/blob/master/setup.demo.json#L2)
 
 * Deploy demo
 
@@ -41,9 +41,13 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 # Lambda function setup (env vars)
 
 * **METHOD**: default "GET". Other values: POST.
+    * in "POST" method you can send a "QUERY" field in the body with a SQL more complex than only send params through querystring. Example for the endpoint "postQuery"
+    
+                select s.city from s3object s where CAST(s.lat AS FLOAT)>40.0 and CAST(s.lng AS FLOAT)>-3.0
+
 * **BUCKET**
 * **FILE**
-* **QUERY**: in the query you have to interpolate the query params you want to use to select objects, as '{param}' (note the single quotes) <br /><br />
+* **QUERY** (only for GET method): in the query you have to interpolate the query params you want to use to select objects, as '{param}' (note the single quotes) <br /><br />
 * Values to setup the INPUT SERIALIZATION:
     * **COMPRESSION_TYPE**: Default "NONE". Other values: "GZIP", "BZIP2"
     * **TYPE**: default "CSV". Other values: "JSON", "Parquet": <br /><br />
@@ -58,9 +62,9 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 # Sample data
 
 * Sample data is from https://simplemaps.com/data/world-cities
-* I transform CSV data into **JSON** and **Parquet** with two simple scripts:
+* I transform CSV data into **JSON** and **Parquet** with a simple script:
 
-        $ node conversor-json.js | python3 conversor-parquet.py
+        $ npm install | node conversor
 
 
 * View [data](data) directory for more info
