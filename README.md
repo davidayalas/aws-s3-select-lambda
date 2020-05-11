@@ -3,7 +3,7 @@
 # Context
 
 * To find the simplest way to publish dynamic microservices
-* In our production uses, we use an API Gateway Custom Authorizer that includes in the request the user querying, then one filter in the SQL is the user id.
+* In our production uses, we use an API Gateway Custom Authorizer that includes the current user in the request, then it's easy to filter data in the SQL for that user.
 
 * AWS S3 Select info: https://docs.aws.amazon.com/AmazonS3/latest/dev/selecting-content-from-objects.html
 
