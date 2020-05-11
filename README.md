@@ -69,6 +69,3 @@ In the serverless example setup file [setup-demo.test.json](setup-demo.test.json
 
 * View [data](data) directory for more info
         
-# TODO
-
-* Allow query in post body
