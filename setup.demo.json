@@ -13,7 +13,6 @@
     "sampleFile3" : "worldcities.parquet",
     "type3" : "Parquet",
 
-    "SQL4" : "select distinct s.country from s3object s",
     "sampleFile4" : "worldcities.parquet",
     "type4" : "Parquet"
 
