@@ -2,9 +2,8 @@
 
 # Context
 
-* To find the simplest way to publish dynamic microservices
-* In our production uses, we use an API Gateway Custom Authorizer that includes in the request the user querying, then one filter in the SQL is the user id.
-
+* To find the simplest way to publish dynamic microservices (only READ)
+* In our production use cases, we use an API Gateway Custom Authorizer that includes in the request the user querying the service. Then, one filter in the SQL is the user id.
 * AWS S3 Select info: https://docs.aws.amazon.com/AmazonS3/latest/dev/selecting-content-from-objects.html
 
 # Requirements to deploy this demo
@@ -30,13 +29,13 @@
 
 This service exposes:
 
-* an api gateway lambda endpoint [index.js](lib/index.js)
-* that uses a wrapper over s3 select to query s3 objects [s3select.js](lib/s3select.js)
-* it supports CSV, JSON and Parquet formats as Input
+* an api gateway lambda endpoint: [index.js](lib/index.js)
+    * that uses a wrapper over s3 select to query s3 objects: [s3select.js](lib/s3select.js)
+    * it supports CSV, JSON and Parquet formats as Input
 
 You can create as many endpoints as you want, and setup some ENV VARS to adapt functionality. 
 
-In the serverless example setup file [setup-demo.test.json](setup-demo.test.json) you can view three configurations: CSV, JSON and Parquet.
+In the serverless example setup file [setup.demo.json](setup.demo.json) you can view four configurations: CSV, JSON, Parquet (get request) and an extra setup for post queries.
 
 # Lambda function setup (env vars)
 
