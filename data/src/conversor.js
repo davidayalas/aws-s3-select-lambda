@@ -1,6 +1,18 @@
 const csvFilesPath='../files/';
 const _fileName='worldcities';
 const fs = require("fs");
+const exec = require("child_process").exec;
+
+function execCmd(cmd) {
+    return new Promise((resolve, reject) => {
+        exec(cmd, (error, stdout, stderr) => {
+            if (error) {
+                console.warn(error);
+            }
+            resolve(stdout? stdout : stderr);
+        });
+    });
+}
 
 async function toJSON(){
     const csv=require('csvtojson');
@@ -65,6 +77,15 @@ async function toParquet(){
 async function main(){
     await toJSON();
     await toParquet();
+    
+    await execCmd("bzip2 -k -f " + csvFilesPath + _fileName + ".csv");
+    console.log(_fileName+".csv.bz2 finished");
+    await execCmd("bzip2 -k -f " + csvFilesPath+ _fileName + ".json");
+    console.log(_fileName+".json.bz2 finished");
+    await execCmd("gzip -k -f " + csvFilesPath+ _fileName + ".csv");
+    console.log(_fileName+".csv.gz finished");
+    await execCmd("gzip -k -f " + csvFilesPath+ _fileName + ".json");
+    console.log(_fileName+".json.gz finished");
 }
 
 main();

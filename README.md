@@ -65,6 +65,16 @@ In the serverless example setup file [setup.demo.json](setup.demo.json) you can 
 
         $ npm install | node conversor
 
-
+* The same script compress csv and json into gzip and bzip2 for testing.
 * View [data](data) directory for more info
         
+# Test
+
+Requirements for test: 
+
+* Upload the content from data/files to the bucket specified in setup.demo.json
+* Setup aws credentials
+* Then...
+
+        $ cd test
+        $ npm test
