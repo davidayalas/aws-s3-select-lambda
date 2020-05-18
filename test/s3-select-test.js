@@ -113,4 +113,10 @@ describe('Wrong setups', function() {
     assert(results.error);
   });
 
+  it('should return results.error for empty setup', async function() {
+    let results = await s3select.query();
+    results = JSON.parse(results);
+    assert(results.error);
+  });
+
 });

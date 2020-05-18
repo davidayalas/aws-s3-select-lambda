@@ -30,7 +30,7 @@
 This service exposes:
 
 * an api gateway lambda endpoint: [index.js](lib/index.js)
-    * that uses a wrapper over s3 select to query s3 objects: [s3select.js](lib/s3select.js)
+    * that uses a little library that wraps s3 select to query s3 objects: [s3select.js](lib/s3select.js)
     * it supports CSV, JSON and Parquet formats as Input
 
 You can create as many endpoints as you want, and setup some ENV VARS to adapt functionality. 
