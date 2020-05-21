@@ -10,7 +10,7 @@ provider:
   region: eu-west-1
   memorySize: 128
   stackTags:
-    name: ${self:service}-${sls:instanceId} 
+    name: ${self:service}
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
