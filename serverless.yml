@@ -86,9 +86,6 @@ functions:
           method: post
           cors: true
 
-environment:
-  stage: demo
-
 custom:
   setupFile: ./setup.${self:provider.stage}.json
   serviceName: ${file(${self:custom.setupFile}):serviceName}
