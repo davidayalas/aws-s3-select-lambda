@@ -92,7 +92,6 @@ environment:
 custom:
   setupFile: ./setup.${self:provider.stage}.json
   serviceName: ${file(${self:custom.setupFile}):serviceName}
-  accountId: ${env:ACCOUNT_ID}
   bucketName: ${self:custom.serviceName}-${file(${self:custom.setupFile}):bucketName}
   s3Sync:
     - bucketName: ${self:custom.bucketName} 

@@ -14,10 +14,6 @@
 
         $ npm install --save serverless-s3-sync
 
-* Export aws ACCOUNT_ID as environment variable
-
-        $ export ACCOUNT_ID=xxxxxxxxxxx
-
 * Update "serviceName" with your own in [setup.demo.json](https://github.com/davidayalas/aws-s3-select-lambda/blob/master/setup.demo.json#L2)
 
 * Deploy demo
